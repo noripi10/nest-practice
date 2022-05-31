@@ -10,13 +10,16 @@ import { PostService } from './post.service';
 import { PrismaService } from './prisma.service';
 import { PostResolver } from './post.resolver';
 import { UserResolver } from './user.resolver';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      sortSchema: true,
     }),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [

@@ -10,7 +10,12 @@ export class UserResolver {
 
   @Query(() => [User])
   async users() {
-    const list = await this.prisma.user.findMany();
+    const list = await this.prisma.user.findMany({
+      include: {
+        posts: true,
+        _count: true,
+      },
+    });
     return list;
   }
 }

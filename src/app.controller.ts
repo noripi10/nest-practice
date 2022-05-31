@@ -25,6 +25,11 @@ export class AppController {
     return this.appService.getHello();
   }
 
+  @Get('user/:id')
+  async getUser(@Param('id') id: string): Promise<UserModel> {
+    return this.userService.user({ id: Number(id) });
+  }
+
   @Get('post/:id')
   async getPostById(@Param('id') id: string): Promise<PostModel> {
     return this.postService.post({ id: Number(id) });
